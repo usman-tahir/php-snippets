@@ -7,6 +7,13 @@ class Car {
   private $tank;
   private $mpg;
   
+  # Constructor for Car objects
+  public function __construct($color = "default", $model = "default", $mpg = 0) {
+    $this -> setColor($color);
+    $this -> setModel($model);
+    $this -> setMpg($mpg);
+  }
+  
   # Get the color of the Car object
   public function getColor() {
     return $this -> color;
@@ -59,15 +66,18 @@ class Car {
   
   # Travel detail printout for the Car object
   public function rideDescription($float, $gallons) {
-    return "The " . $this -> getModel() . " drove " . $float . " miles, and used " . round($gallons, 2) . " gallons of fuel.";
+    return "The " . $this -> getModel() . " drove " . $float . " miles, and used " . round($gallons, 2) . " gallons of fuel.<br>";
+  }
+  
+  # Magic methods
+  public function getClass() {
+    return "The class is: " . __CLASS__ . ".<br>";
   }
   
 }
 
 # Sample Car object and manipulation
-$bmw = new Car();
-$bmw -> setColor("brown");
-$bmw -> setModel("BMW");
-$bmw -> setMpg(22);
+$bmw = new Car("black", "BMW", 28);
 
 $bmw -> fill(16.00) -> ride(120);
+echo $bmw -> getClass();
