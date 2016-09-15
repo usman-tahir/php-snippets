@@ -45,6 +45,7 @@ class Car {
   # Set the current fuel level of the Car object (by filling it)
   public function fill($float) {
     $this -> tank += $float;
+    return $this;
   }
   
   # Take the Car object for a ride, and then display its travel details
@@ -53,11 +54,12 @@ class Car {
     $gallons = ($miles / $this -> getMpg());
     $this -> tank -= $gallons;
     echo $this -> rideDescription($float, $gallons);
+    return $this;
   }
   
   # Travel detail printout for the Car object
   public function rideDescription($float, $gallons) {
-    return "The " . $this -> getModel() . " drove " . $float . " miles, and used " . $gallons . " gallons of fuel.";
+    return "The " . $this -> getModel() . " drove " . $float . " miles, and used " . round($gallons, 2) . " gallons of fuel.";
   }
   
 }
@@ -66,7 +68,6 @@ class Car {
 $bmw = new Car();
 $bmw -> setColor("brown");
 $bmw -> setModel("BMW");
-$bmw -> setMpg(32);
+$bmw -> setMpg(22);
 
-$bmw ->fill(16.00);
-$bmw -> ride(160);
+$bmw -> fill(16.00) -> ride(120);
